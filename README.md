@@ -90,8 +90,8 @@ We've included some bonus features that enhance your experience:
 Contributions are welcome! If you'd like to improve the app or add new features, feel free to submit a pull request. We encourage creative problem-solving and resourcefulness.
 
 ## Contact
-If you have any questions or feedback, please reach out to the project owner:
-   Allan Joston Fernandes
+If you have any questions or feedback, please reach out to the project owner:<br>
+   Allan Joston Fernandes<br>
    Email: allanfernandes459@gmail.com
 
 Enjoy exploring the Email Template Marketplace!
