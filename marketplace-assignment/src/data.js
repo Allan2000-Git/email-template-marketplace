@@ -5,6 +5,9 @@ export const data = [
             "a1":"../src/assets/a1.png",
             "a2":"../src/assets/a2.png",
             "a3":"../src/assets/a3.png",
+            "a4":"../src/assets/a1.png",
+            "a5":"../src/assets/a2.png",
+            "a6":"../src/assets/a3.png",
         },
         "titles":{
             "t1":{
@@ -18,6 +21,18 @@ export const data = [
             "t3":{
                 "title3":"New Product/Service Announcement",
                 "popular3":true,
+            },
+            "t4":{
+                "title4":"Product Launch Alert",
+                "popular4":false,
+            },
+            "t5":{
+                "title5":"Company News Flash",
+                "popular5":false,
+            },
+            "t6":{
+                "title6":"Policy Change Notification",
+                "popular6":true,
             },
         },
         "category":"Announcement"

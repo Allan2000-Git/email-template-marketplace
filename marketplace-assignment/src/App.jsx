@@ -18,9 +18,10 @@ function App() {
 
   return (
     <>
-      
+      <div className="w-screen">
       <HeroSection />
       <Marketplace />
+      </div>
     </>
   )
 }

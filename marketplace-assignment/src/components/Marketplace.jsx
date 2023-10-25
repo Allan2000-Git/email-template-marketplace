@@ -8,7 +8,7 @@ const Marketplace = () => {
             <div className="w-full bg-white">
                 <div className="sm:max-w-[1260px] sm:mx-auto">
                     <div className="flex sm:mb-[40px] sm:flex-row ">
-                        <Categories />
+                        {/* <Categories /> */}
                         <Templates />
                     </div>
                 </div>

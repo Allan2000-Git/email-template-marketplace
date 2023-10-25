@@ -13,11 +13,12 @@ export const MarketContextProvider = ({children}) =>{
         response: [], 
     })
 
+
     const [selectedCategories, setSelectedCategories] = useState([])
-    const [filteredData, setFilteredData] = useState(data);
+    const [filteredData, setFilteredData] = useState([]);
 
     return(
-        <MarketContext.Provider value={{selectedOption, setSelectedOption, searchInput, setSearchInput, sortType, setSortType, filteredData, setFilteredData, selectedCategories, setSelectedCategories}}>
+        <MarketContext.Provider value={{ selectedOption, setSelectedOption, searchInput, setSearchInput, sortType, setSortType, filteredData, setFilteredData, selectedCategories, setSelectedCategories}}>
             {children}
         </MarketContext.Provider>
     )

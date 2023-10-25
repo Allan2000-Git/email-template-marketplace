@@ -7,7 +7,7 @@ import { data } from '../data';
 
 const Templates = () => {
 
-    const {searchInput, setSearchInput, sortType, setSortType, filteredData} = useMarketContext();
+    const {searchInput, setSearchInput, sortType, setSortType, filteredData, selectedCategories, setSelectedCategories} = useMarketContext();
     const [sortData, setSortData] = useState([]);
     const [filteredResults, setFilteredResults] = useState([]);
 
@@ -26,8 +26,6 @@ const Templates = () => {
             setFilteredResults(data)
         }
     }
-
-    
 
 
     useEffect(()=>{
@@ -57,8 +55,107 @@ const Templates = () => {
         event.preventDefault();
     }
 
+    const categories = [
+        'Announcement',
+        'Educate & Inform',
+        "Invitations",
+        "Occassions",
+    ];
+
+    const [categoryFilters, setcategoryFilters] = useState(new Set());
+
+    function updateFilters(checked, categoryFilter) {
+        if (checked)
+        setcategoryFilters((prev) => new Set(prev).add(categoryFilter));
+        if (!checked)
+        setcategoryFilters((prev) => {
+            const next = new Set(prev);
+            next.delete(categoryFilter);
+            return next;
+        });
+    }
+    
+    const filteredProducts =
+        categoryFilters.size === 0
+        ? data
+        : data.filter((p) => categoryFilters.has(p.category));
+
+
+        
+
+    // setFilterRes(filteredProducts)
+
+    // ------------------------------------------------------------
+    
+    // handleCategoryToggle
+
+    function handleCategoryToggle(category) {
+        setSelectedCategories((prevSelected) => {
+            if (prevSelected.includes(category)) {
+                return prevSelected.filter((c) => c !== category);
+            } else {
+                return [...prevSelected, category];
+            }
+        });
+    }
+    
+
+    const filteredCategoriesData = data.filter((item) =>{
+            return selectedCategories.length === 0 ? true : selectedCategories.includes(item.category);
+        }
+    );
+    console.log(filteredCategoriesData);
+    // useEffect(()=>{
+    //     setFilterRes(filteredProducts)
+    // }, [filterRes])
+
+    // const [filterTags, setFilterTags] = useState([])
+
+    // const filteredDATA = data.filter((node) =>
+    //     filterTags.length > 0
+    //     ? filterTags.every((filterTag) =>
+    //         node.tags.map((tag) => tag.slug).includes(filterTag)
+    //         )
+    //     : data
+    // )
+
+    // const filterHandler = (event) => {
+    //     if (event.target.checked) {
+    //     setFilterTags([...filterTags, event.target.value])
+    //     } else {
+    //     setFilterTags(
+    //         filterTags.filter((filterTag) => filterTag !== event.target.value)
+    //     )
+    //     }
+    // }
+    
+
     return (
         <>
+            <div className="flex flex-col gap-[16px] sm:sticky sm:top-0">
+                <span className="text-[#595250)] text-[16px] font-normal leading-[24px]">Categories</span>
+                <div className="flex flex-col gap-[16px]">
+                    <div className="flex items-center gap-[8px]">
+                        <input className="checkbox-size" value="Announcement" checked={selectedCategories.includes('Announcement')}  type="checkbox" onChange={() => handleCategoryToggle('Announcement')}  />
+                        <span className="text-[#161616] text-[16px] font-bold leading-[24px] w-[150px]"> Announcement </span>
+                    </div>
+                    <div className="flex items-center gap-[8px]">
+                        <input className="checkbox-size" value="Educate & Inform" checked={selectedCategories.includes('Educate & Inform')}  type="checkbox" onChange={() => handleCategoryToggle('Educate & Inform')}  />
+                        <span className="text-[#161616] text-[16px] font-bold leading-[24px] w-[150px]"> Educate & Inform </span>
+                    </div>
+
+                    <div className="flex items-center gap-[8px] container">
+                        <input className="checkbox-size" value="Invitations" checked={selectedCategories.includes('Invitations')}   type="checkbox" onChange={() => handleCategoryToggle('Invitations')} />
+                        <span className="text-[#161616] text-[16px] font-bold leading-[24px]"> Invitation </span>
+                    </div>
+
+                    <div className="flex items-center gap-[8px]">
+                        <input className="checkbox-size" value="Occassions" checked={selectedCategories.includes('Occassions')}  type="checkbox" onChange={() => handleCategoryToggle('Occassions')} />
+                        <span className="text-[#161616] text-[16px] font-bold leading-[24px]"> Occassions </span>
+                    </div>
+                    
+                </div>
+            </div>
             <div className="w-full sm:ml-[100px] ml-0 px-[24px]">
                 <div className="sm:flex-row flex items-center justify-between flex-wrap sm:mt-0 mt-[20px]">
                     <div>
@@ -82,7 +179,7 @@ const Templates = () => {
                     </div>
                 </div>
                 <div className="">
-                    {searchInput.length > 1 ? (
+                    {searchInput.length > 0 ? (
                         filteredResults.map((item)=>{
                             return(
                                 <TemplateType key={item.id} templateTitle={item.category} a1={item.images.a1} a2={item.images.a2} a3={item.images.a3} t1={item.titles.t1.title1} t2={item.titles.t2.title2} t3={item.titles.t3.title3} p1={item.titles.t1.popular1} p2={item.titles.t2.popular2} p3={item.titles.t3.popular3}/>
@@ -96,15 +193,17 @@ const Templates = () => {
                                 })
                             ):
                             (
-                                filteredData ? (
-                                    filteredData.map((item)=>{
-                                        return(
-                                            <TemplateType key={item.id} templateTitle={item.category} a1={item.images.a1} a2={item.images.a2} a3={item.images.a3} t1={item.titles.t1.title1} t2={item.titles.t2.title2} t3={item.titles.t3.title3} p1={item.titles.t1.popular1} p2={item.titles.t2.popular2} p3={item.titles.t3.popular3}/>                                    )
-                                    })
-                                ):(
-                                    data.map((item)=>{
-                                        return(
-                                            <TemplateType key={item.id} templateTitle={item.category} a1={item.images.a1} a2={item.images.a2} a3={item.images.a3} t1={item.titles.t1.title1} t2={item.titles.t2.title2} t3={item.titles.t3.title3} p1={item.titles.t1.popular1} p2={item.titles.t2.popular2} p3={item.titles.t3.popular3}/>
+                                filteredCategoriesData.length > 0 ?
+                                    (
+                                        filteredCategoriesData.map((item)=>{
+                                            console.log(item);
+                                            return(
+                                                <TemplateType key={item.id} templateTitle={item.category} a1={item.images.a1} a2={item.images.a2} a3={item.images.a3} t1={item.titles.t1.title1} t2={item.titles.t2.title2} t3={item.titles.t3.title3} p1={item.titles.t1.popular1} p2={item.titles.t2.popular2} p3={item.titles.t3.popular3}/>                                    )
+                                        })
+                                    ):(
+                                        data.map((item)=>{
+                                            return(
+                                                <TemplateType key={item.id}  templateTitle={item.category} a1={item.images.a1} a2={item.images.a2} a3={item.images.a3} t1={item.titles.t1.title1} t2={item.titles.t2.title2} t3={item.titles.t3.title3} p1={item.titles.t1.popular1} p2={item.titles.t2.popular2} p3={item.titles.t3.popular3}/>
                                         )
                                     })
                                 )

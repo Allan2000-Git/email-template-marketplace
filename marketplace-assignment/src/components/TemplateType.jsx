@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 import { Navigation,Scrollbar } from 'swiper/modules';
 register();
 
-const TemplateType = ({templateTitle, a1, a2, a3, t1, t2, t3, p1, p2, p3}) => {
+const TemplateType = ({templateTitle, titles, a1, a2, a3, t1, t2, t3, p1, p2, p3}) => {
 
     const [loader, setLoader] = useState(false);
     useEffect(() => {
@@ -16,7 +16,10 @@ const TemplateType = ({templateTitle, a1, a2, a3, t1, t2, t3, p1, p2, p3}) => {
         setTimeout( () => {
             setLoader(false);
         }, 4000);
+
+        
     }, []);
+
 
     return (
         <>
