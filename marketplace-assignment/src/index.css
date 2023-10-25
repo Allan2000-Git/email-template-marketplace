@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .checkbox-size{
+        @apply w-[20px] h-[20px] accent-[#161616]
+    }
+
+    .title-h1{
+        @apply text-[#24A148] text-[40px] leading-[50px] tracking-[-1.5px] sm:text-[64px] font-normal sm:leading-[72px] sm:tracking-[-1.28px]
+    }
+}
