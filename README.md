@@ -91,7 +91,7 @@ Contributions are welcome! If you'd like to improve the app or add new features,
 
 ## Contact
 If you have any questions or feedback, please reach out to the project owner:
-Allan Joston Fernandes
-Email: allan@emailtemplatemarketplace.com
+   Allan Joston Fernandes
+   Email: allanfernandes459@gmail.com
 
 Enjoy exploring the Email Template Marketplace!
