@@ -68,7 +68,7 @@ To get the app up and running, follow these steps:
 6. Start the development server:
 
    ```bash
-   npm create vite@latest
+   npm run dev
 
 7. Open your browser and access the app at `http://localhost:5173/`.
 
